@@ -74,8 +74,8 @@ $.fn.clock = function(options) {
     }
     options.langSet = options.langSet || "en";
     options.format = options.format || ((options.langSet!="en") ? "24" : "12");
-    options.calendar = options.calendar || "true";
-    options.seconds = options.seconds || "true";
+    options.calendar = options.calendar || true;
+    options.seconds = options.seconds || true;
 
     if (!$(this).hasClass("jqclock")){$(this).addClass("jqclock");}
 
@@ -113,15 +113,15 @@ $.fn.clock = function(options) {
         m=addleadingzero(m);
         s=addleadingzero(s);
 
-        if(myoptions.calendar!="false") {
+        if(myoptions.calendar!=false) {
           if (myoptions.langSet=="en") {
-            calend = "<span class='clockdate'>"+locale[myoptions.langSet].weekdays[dy]+', '+locale[myoptions.langSet].months[mo]+' '+dt+', '+y+"</span>";
+            calend = '<span class="clockdate">'+locale[myoptions.langSet].weekdays[dy]+', '+locale[myoptions.langSet].months[mo]+' '+dt+', '+y+'</span>';
           }
           else {
-            calend = "<span class='clockdate'>"+locale[myoptions.langSet].weekdays[dy]+', '+dt+' '+locale[myoptions.langSet].months[mo]+' '+y+"</span>";
+            calend = '<span class="clockdate">'+locale[myoptions.langSet].weekdays[dy]+', '+dt+' '+locale[myoptions.langSet].months[mo]+' '+y+'</span>';
           }
         }
-        $(el).html(calend+"<span class='clocktime'>"+h+":"+m+(options.seconds == "true"?":"+s:"")+ap+"</span>");
+        $(el).html(calend+'<span class="clocktime">'+h+':'+m+(options.seconds == true?':'+s:'')+ap+'</span>');
         t[el_id] = setTimeout(function() { updateClock( $(el),myoptions ) }, 1000);
       }
 
